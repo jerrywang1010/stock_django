@@ -1,0 +1,41 @@
+<form action="#" method="get">
+    {% load static %}
+    <link href="{% static 'stock_price/main.css' %}" rel="stylesheet" type="text/css" />
+<!DOCTYPE html>
+<html>
+    <head>
+        <h1 class="head"> 股票走势图</h1>
+
+        <img class=image src="{% static "stock_price/frog.jpg" %}" />
+    </head>
+    
+    <body>
+        <div class="box">
+            公司名称：
+            <input type="text" name="company_name" />
+
+            <select name="duration">
+                <option value="EMPTY" ></option>
+                <option value="YTD" >今年走势</option>
+                <option value="MTD" >今月走势</option>
+                <option value="ALL" >历史走势</option>
+            </select>
+        </div>
+
+        <div class="email">
+            发送邮件？<input type="checkbox" name="send_email"/>
+
+            邮箱地址：
+            <input type="text" name="email_address"/>
+        </div>
+
+        <div class="submit">
+            <button name="confirm" type="submit" value="Click">确认</button>
+            <button name="clear" type="submit" value="Click">清除</button>
+        </div>
+        {% if data != None %}
+        <img class=price src="data:image/png;base64,{{ data }}"/>
+        {% endif %}
+    </body>
+</html>
+</form>
